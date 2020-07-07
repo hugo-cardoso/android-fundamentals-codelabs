@@ -3,36 +3,51 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
     private var toast: Toast? = null
-    private var rollButton: Button? = null;
-    private var resultText: TextView? = null
+    private lateinit var rollButton: Button
+    private lateinit var diceImage: ImageView
+    private var diceNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        resultText = findViewById(R.id.result_text)
+        diceImage = findViewById(R.id.dice_image)
         rollButton = findViewById(R.id.roll_button)
-        rollButton?.setOnClickListener { rollDice() }
+        rollButton.setOnClickListener { rollDice() }
     }
 
     private fun rollDice() {
-        changeResultText()
+        updateDiceNumber()
         showToast()
     }
 
-    private fun changeResultText() {
-        resultText?.text = (1..6).random().toString()
+    private fun updateDiceNumber() {
+        diceNumber = (1..6).random();
+        updateDiceImage()
+    }
+
+    private fun updateDiceImage() {
+        val diceResource = when (diceNumber) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            6 -> R.drawable.dice_6
+            else -> R.drawable.empty_dice
+        }
+        diceImage.setImageResource(diceResource)
     }
 
     private fun showToast() {
         toast?.cancel()
-        toast = Toast.makeText(this, "Sort by toggled", Toast.LENGTH_SHORT)
+        toast = Toast.makeText(this, "Rolled!", Toast.LENGTH_SHORT)
         toast?.show()
     }
 }
