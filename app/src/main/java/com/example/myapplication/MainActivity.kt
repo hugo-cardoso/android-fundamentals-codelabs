@@ -5,21 +5,17 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var toast: Toast? = null
-    private lateinit var rollButton: Button
-    private lateinit var diceImage: ImageView
     private var diceNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        diceImage = findViewById(R.id.dice_image)
-        rollButton = findViewById(R.id.roll_button)
-        rollButton.setOnClickListener { rollDice() }
+        roll_button.setOnClickListener { rollDice() }
     }
 
     private fun rollDice() {
@@ -42,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             6 -> R.drawable.dice_6
             else -> R.drawable.empty_dice
         }
-        diceImage.setImageResource(diceResource)
+        dice_image.setImageResource(diceResource);
     }
 
     private fun showToast() {
