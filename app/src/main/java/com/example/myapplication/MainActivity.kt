@@ -1,47 +1,59 @@
 package com.example.myapplication
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.databinding.DataBindingUtil
+import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
+    private val myName: MyName = MyName("Hugo Cardoso");
     private var toast: Toast? = null
-    private var diceNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        roll_button.setOnClickListener { rollDice() }
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.myName = myName
+
+        binding.editInfosButton.setOnClickListener { openEditInfos() }
+        binding.doneButton.setOnClickListener { saveEditInfos(it) }
     }
 
-    private fun rollDice() {
-        updateDiceNumber()
-        showToast()
-    }
-
-    private fun updateDiceNumber() {
-        diceNumber = (1..6).random();
-        updateDiceImage()
-    }
-
-    private fun updateDiceImage() {
-        val diceResource = when (diceNumber) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            6 -> R.drawable.dice_6
-            else -> R.drawable.empty_dice
+    private fun openEditInfos() {
+        binding.apply {
+            infos.visibility = View.GONE
+            infosEdit.visibility = View.VISIBLE
         }
-        dice_image.setImageResource(diceResource);
     }
 
-    private fun showToast() {
+    private fun saveEditInfos(view: View) {
+        binding.apply {
+            myName?.name = nameEdit.text.toString()
+            invalidateAll()
+            infosEdit.visibility = View.GONE
+            infos.visibility = View.VISIBLE
+        }
+
+        hideKeyboard(view)
+        showToast("Nome Atualizado")
+    }
+
+    private fun showToast(message: String) {
         toast?.cancel()
-        toast = Toast.makeText(this, "Rolled!", Toast.LENGTH_SHORT)
+        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast?.show()
+    }
+
+    private fun hideKeyboard(view: View) {
+        val imn = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imn.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
