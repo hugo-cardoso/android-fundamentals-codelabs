@@ -1,55 +1,44 @@
 package com.example.myapplication
 
-import android.content.Context
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import com.example.myapplication.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-
-    private val myName: MyName = MyName("Hugo Cardoso");
-    private var toast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.myName = myName
-
-        binding.editInfosButton.setOnClickListener { openEditInfos() }
-        binding.doneButton.setOnClickListener { saveEditInfos(it) }
+        setListeners()
     }
 
-    private fun openEditInfos() {
-        binding.apply {
-            infos.visibility = View.GONE
-            infosEdit.visibility = View.VISIBLE
+    private fun setListeners() {
+        val clickableViews: List<View> =
+                listOf(box_one_text, box_two_text, box_three_text, box_four_text, box_five_text, red_button, green_button, yellow_button)
+
+        for( item in clickableViews ) {
+            item.setOnClickListener { makeColored(it) }
         }
     }
 
-    private fun saveEditInfos(view: View) {
-        binding.apply {
-            myName?.name = nameEdit.text.toString()
-            invalidateAll()
-            infosEdit.visibility = View.GONE
-            infos.visibility = View.VISIBLE
+    private fun makeColored(view: View) {
+        when (view.id) {
+            R.id.box_one_text -> view.setBackgroundColor(Color.DKGRAY)
+            R.id.box_two_text -> view.setBackgroundColor(Color.GRAY)
+
+            R.id.box_three_text -> view.setBackgroundResource(android.R.color.holo_green_light)
+            R.id.box_four_text -> view.setBackgroundResource(android.R.color.holo_green_dark)
+            R.id.box_five_text -> view.setBackgroundResource(android.R.color.holo_green_light)
+
+            R.id.red_button -> box_three_text.setBackgroundResource(R.color.my_red)
+            R.id.yellow_button -> box_four_text.setBackgroundResource(R.color.my_yellow)
+            R.id.green_button -> box_five_text.setBackgroundResource(R.color.my_green)
+
+            else -> view.setBackgroundColor(Color.LTGRAY)
         }
-
-        hideKeyboard(view)
-        showToast("Nome Atualizado")
-    }
-
-    private fun showToast(message: String) {
-        toast?.cancel()
-        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast?.show()
     }
 
     private fun hideKeyboard(view: View) {

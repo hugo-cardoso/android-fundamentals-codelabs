@@ -1,7 +1,13 @@
 <resources>
-    <string name="app_name">About Me</string>
-    <string name="name">Hugo Cardoso</string>
-    <string name="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum dolor sit amet consectetur adipiscing elit. Sodales ut eu sem integer vitae justo. Morbi tristique senectus et netus et malesuada fames ac. Sit amet massa vitae tortor. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Ac turpis egestas maecenas pharetra convallis posuere morbi leo urna. Elementum nibh tellus molestie nunc non blandit massa. Amet justo donec enim diam vulputate ut. Consequat nisl vel pretium lectus quam id. \n\nVel pharetra vel turpis nunc. Ut venenatis tellus in metus vulputate eu scelerisque. Enim nunc faucibus a pellentesque. Interdum velit laoreet id donec ultrices tincidunt arcu non sodales. Netus et malesuada fames ac turpis egestas. Eu feugiat pretium nibh ipsum consequat nisl vel pretium lectus. Sem nulla pharetra diam sit amet nisl suscipit adipiscing. Magna etiam tempor orci eu lobortis elementum nibh tellus molestie. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor. Orci phasellus egestas tellus rutrum. Nunc sed blandit libero volutpat sed. Eget nulla facilisi etiam dignissim diam. Cras semper auctor neque vitae. Leo duis ut diam quam. Mi sit amet mauris commodo quis imperdiet massa tincidunt nunc.</string>
-    <string name="what_is_your_name">What is your Name?</string>
-    <string name="done">Done</string>
+    <string name="app_name">Color My Views</string>
+    <string name="box_one">Box One</string>
+    <string name="box_two">Box Two</string>
+    <string name="box_three">Box Three</string>
+    <string name="box_four">Box Four</string>
+    <string name="box_five">Box Five</string>
+    <string name="button_red">RED</string>
+    <string name="button_yellow">YELLOW</string>
+    <string name="button_green">GREEN</string>
+    <string name="how_to_play">How To Play:</string>
+    <string name="info_text">Tap the screen and buttons</string>
 </resources>
