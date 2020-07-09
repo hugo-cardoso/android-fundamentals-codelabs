@@ -7,4 +7,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="WhiteBox">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/box_text_size</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
 </resources>
